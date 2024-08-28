@@ -29,7 +29,12 @@ jobs:
           cache: 'npm'
       - uses: actions/cache@v4.0.2
         id: npm-cache
-      - run: npm ci
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install npm dependencies
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: npm ci
       - run: npm run lint
       - run: npm test
   docker_build:
