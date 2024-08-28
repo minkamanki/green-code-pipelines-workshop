@@ -1,12 +1,12 @@
-FROM node:18
+FROM node:18.20.4-slim
 
 WORKDIR /usr/src/app
 ENV NODE_ENV=production
 
-COPY src .
+COPY database.sqlite .
 COPY package.json .
 COPY package-lock.json .
-COPY database.sqlite .
+COPY src .
 
 RUN npm install
 
