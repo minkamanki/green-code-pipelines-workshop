@@ -1,10 +1,15 @@
 name: Demo CI
 
 on: push
+  branches:
+    - master
+  paths-ignore:
+    - '**/README.md'
+    - '**/LICENCE'
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4.1.7
       - name: Use Node.js 18
