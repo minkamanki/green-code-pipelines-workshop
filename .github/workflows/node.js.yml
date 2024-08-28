@@ -26,6 +26,9 @@ jobs:
         uses: actions/setup-node@v4.0.3
         with:
           node-version-file: '.nvmrc'
+          cache: 'npm'
+      - uses: actions/cache@v4.0.2
+        id: npm-cache
       - run: npm ci
       - run: npm run lint
       - run: npm test
